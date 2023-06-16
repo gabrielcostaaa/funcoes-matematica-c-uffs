@@ -4,15 +4,20 @@ import numpy as np
 
 #= == DADOS DE ENTRADA == ==
 
-n = 100
-a = -3  # limite à esquerda no gráfico
-b = 3   # limite à direita no gráfico
+n = int(input('Digite a quantidade de valores de Y da função: '))
+a = int(input('Digite o limite a esquerda do gráfico (negativo): '))  # limite à esquerda no gráfico
+b = abs(int(input('Digite o limite a direita do gráfico: '))) 
+
+coef_ang = int(input('Valor de A (coeficiente angular): '))
+coef_linear = int(input('Valor de B (coeficiente linear): '))
+coef_c = int(input('Digite o valor de C: '))
 
 def F1(x):
-    f = x ** 1 - 3 * x - 2  #= == digite a expressão da função
+    f = (coef_ang*x**2) - (coef_linear*x) - (coef_c)  #= == digite a expressão da função
     return f
 
 #= == =CÁLCULO DA FUNÇÃO == == ==
+
 x = np.linspace(a, b, n) #= == == domínio da função
 
 y = []
@@ -20,8 +25,8 @@ for i in range(0,n): #= == cálculo dos valores de y da função
     y.append(F1(x[i]))
     print(f"y={y[i]} \n") #= == valores de x
 
-
 #= == EIXOS X E Y PARA O GRÁFICO == == =
+
 menor = 1000000 #= == cálculo do dy
 maior = 0
 for i in range(0,n): #= == procura do maior e menor absoluto no intervalo(a, b)
@@ -42,5 +47,6 @@ for i in range(1,n): #= == cálculo dos valores de y da função
     X.append(0) #= == eixo X e x do eixo y
 
 #= == =SAÍDA DE DADOS == == =
+
 plt.plot(x, y, 'k', x, np.array(X).T, 'r', X, yy, 'r')
 plt.show()
